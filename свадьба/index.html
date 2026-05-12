@@ -28,8 +28,19 @@
     .intro-wrap{position:absolute;top:68px;left:50%;transform:translate(-50%,0);z-index:10;text-align:center;padding:0 24px;width:100%;max-width:760px;animation:fadeUp 1s ease .4s both;}
     @keyframes fadeUp{from{opacity:0;transform:translate(-50%,16px);}to{opacity:1;transform:translate(-50%,0);}}
     .intro-wrap.show{opacity:1;}
-    .intro-eyebrow{font-family:'Jost',sans-serif;font-weight:300;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-l);margin-bottom:20px;min-height:20px;}
-    .intro-names{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;font-style:italic;color:#fffdf9;line-height:1;text-shadow:0 2px 40px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;gap:12px;}
+.intro-eyebrow{
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:clamp(15px,2.4vw,22px);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold-l);
+  margin-bottom:16px;
+  line-height:1.45;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}    .intro-names{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;font-style:italic;color:#fffdf9;line-height:1;text-shadow:0 2px 40px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;gap:12px;}
     .intro-and{color:var(--gold-l);display:inline;}
 .intro-invite{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(13px,3vw,18px);letter-spacing:.15em;color:rgba(255,253,249,.88);margin-top:14px;text-transform:uppercase;text-shadow:0 2px 24px rgba(0,0,0,.45);}
 .intro-eyebrow{font-family:'Jost',sans-serif;font-weight:300;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-l);margin-bottom:16px;}
@@ -284,7 +295,9 @@ try{(function(){emailjs.init({publicKey:"EgOjPYwHrO8TZ8S45"});})();}catch(e){con
 const T = {
   en:{
     n1:"Alla", n2:"Mark",
-    eye:"With joy we invite you", inv:"invite you to their wedding", eBtn:"Open Invitation",
+    eye:"Alla and Mark joyfully invite you to their wedding", 
+    inv:"July 3, 2026 · Armenia", 
+    eBtn:"Open Invitation",
     chip:"July 3, 2026 · Armenia, Ashtarak",
     sub:"We joyfully invite you to celebrate this special day with us.",
     bRsvp:"Confirm Attendance", bLoc:"Venue",
@@ -309,8 +322,9 @@ const T = {
   },
   ru:{
     n1:"Алла", n2:"Марк",
-    eye:"С радостью приглашаем вас", inv:"Приглашают вас на свадьбу", eBtn:"Открыть приглашение",
-    chip:"3 июля 2026 · Армения, Аштарак",
+eye:"Алла и Марк с радостью приглашают вас на свадьбу", 
+inv:"3 июля 2026 · Армения", 
+eBtn:"Открыть приглашение",    chip:"3 июля 2026 · Армения, Аштарак",
     sub:"С радостью приглашаем вас разделить с нами этот особенный день.",
     bRsvp:"Подтвердить присутствие", bLoc:"Место проведения",
     dTitle:"Детали торжества", dSub:"Важная информация для гостей",
@@ -334,8 +348,9 @@ const T = {
   },
   hy:{
     n1:"Ալլա", n2:"Մարկ",
-    eye:"Ուրախությամբ հրավիրում ենք", inv:"Հրավիրում են ձեզ հարսանեկան տոնակատարությանը", eBtn:"Բացել հրավիրատոմսը",
-    chip:"Հուլիսի 3, 2026 · Հայաստան, Աշտարակ",
+eye:"Ալլան և Մարկը սիրով հրավիրում են ձեզ իրենց հարսանիքին", 
+inv:"2026 թ. հուլիսի 3 · Հայաստան", 
+eBtn:"Բացել հրավիրատոմսը",    chip:"Հուլիսի 3, 2026 · Հայաստան, Աշտարակ",
     sub:"Ուրախությամբ հրավիրում ենք ձեզ կիսել այս հատուկ օրը մեզ հետ։",
     bRsvp:"Հաստատել մասնակցությունը", bLoc:"Վայրը",
     dTitle:"Տոնի մանրամասներ", dSub:"Կարևոր տեղեկություններ հյուրերի համար",
@@ -414,9 +429,9 @@ function applyLang(l, fromSlide) {
   document.documentElement.lang = l === 'hy' ? 'hy' : l === 'ru' ? 'ru' : 'en';
 }
 
-const INTRO_LANGS = ['ru', 'hy', 'en'];
+const INTRO_LANGS = ['en'];
 let introLangIndex = 0;
-let introLangTimer;
+let introLangTimer = null;
 
 document.querySelectorAll('.lb').forEach(b => b.addEventListener('click', () => {
   clearInterval(introLangTimer);
@@ -424,10 +439,10 @@ document.querySelectorAll('.lb').forEach(b => b.addEventListener('click', () => 
 }));
 
 applyLang(INTRO_LANGS[introLangIndex]);
-introLangTimer = setInterval(() => {
-  introLangIndex = (introLangIndex + 1) % INTRO_LANGS.length;
-  applyLang(INTRO_LANGS[introLangIndex], true);
-}, 2600);
+// introLangTimer = setInterval(() => {
+//   introLangIndex = (introLangIndex + 1) % INTRO_LANGS.length;
+//   applyLang(INTRO_LANGS[introLangIndex], true);
+// }, 2600);
 
 // ── COUNTDOWN ─────────────────────────────────────
 const WD = new Date("2026-07-03T15:00:00");
